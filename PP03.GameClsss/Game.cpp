@@ -13,12 +13,13 @@ bool Game::init(const char* title, int xpos, int ypos,
 		{
 			m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, 0);
 		}
+		m_bRunning = true;
 	}
 	else
 	{
 	return false;
 	}
-	m_bRunning = true;
+	
 	return true;
 }
 
