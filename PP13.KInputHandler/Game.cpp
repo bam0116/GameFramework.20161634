@@ -65,6 +65,11 @@ void Game::clean()
 	SDL_Quit();
 }
 
+void Game::quit()
+{
+	m_bRunning = false;
+}
+
 void Game::handleEvents()
 {
 	TheInputHandler::Instance()->update();
