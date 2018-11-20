@@ -1,5 +1,7 @@
 #include <iostream>
 #include "Game.h"
+#include "MenuState.h"
+#include "PlayState.h"
 #include <SDL_image.h>
 
 
@@ -28,7 +30,11 @@ bool Game::init(const char* title, int xpos, int ypos,
 		}
 		SDL_SetRenderDrawColor(m_pRenderer, 255, 255, 255, 255);
 
+		m_pGameStateMachine = new GameStateMachine();
+		m_pGameStateMachine->changeState(MenuState::Instance());
+
 		m_gameObject.push_back(new Player(new LoaderParams(100, 100, 128, 82, "animate")));
+		m_gameObject.push_back(new Enemy(new LoaderParams(300, 300, 128, 82, "animate")));
 	}
 	else
 	{
@@ -40,23 +46,13 @@ bool Game::init(const char* title, int xpos, int ypos,
 void Game::render()
 {
 	SDL_RenderClear(m_pRenderer);
-	for (std::vector<GameObject*>::size_type i = 0; i != m_gameObject.size(); i++)
-	{
-		m_gameObject[i]->draw();
-	}
+	m_pGameStateMachine->render();
 	SDL_RenderPresent(m_pRenderer);
 }
 
 void Game::update()
 {
-	for (std::vector<GameObject*>::size_type i = 0; i != m_gameObject.size(); i++)
-	{
-		m_gameObject[i]->update();
-	}
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
-	{
-		m_gameObject.push_back(new Bullet(new LoaderParams(100, 100, 128, 82, "animate")));
-	}
+	m_pGameStateMachine->update();
 }
 
 void Game::clean()
@@ -76,4 +72,8 @@ void Game::quit()
 void Game::handleEvents()
 {
 	TheInputHandler::Instance()->update();
+	if(TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN))
+	{
+		m_pGameStateMachine->changeState(PlayState::Instance());
+	}
 }

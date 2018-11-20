@@ -5,8 +5,8 @@
 #include "GameObject.h"
 #include "Player.h"
 #include "Enemy.h"
-#include "Bullet.h"
 #include "InputHandler.h"
+#include "GameStateMachine.h"
 
 class Game
 {
@@ -35,6 +35,7 @@ public:
 private:
 	Game();
 	static Game* s_pInstance;
+	GameStateMachine* m_pGameStateMachine;
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 	bool m_bRunning;
