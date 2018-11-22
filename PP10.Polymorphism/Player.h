@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include "GameObject.h"
+#include "SDL.h"
 
 class Player : public GameObject
 {
