@@ -1,6 +1,10 @@
 #pragma once
 
 #include "GameState.h"
+#include "Game.h"
+#include "MenuButton.h"
+#include "PlayState.h"
+#include "TextureManager.h"
 
 class MenuState : public GameState
 {

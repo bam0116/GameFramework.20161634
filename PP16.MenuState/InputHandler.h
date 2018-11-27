@@ -4,14 +4,15 @@
 #include "Vector2D.h"
 #include "Game.h"
 
+enum mouse_buttons
+{
+	LEFT = 0,
+	MIDDLE = 1,
+	RIGHT = 2
+};
+
 class InputHandler {
 
-	enum mouse_buttons
-	{
-		LEFT = 0,
-		MIDDLE = 1,
-		RIGHT = 2
-	};
 public:
 	const Uint8* m_keystates;
 	bool isKeyDown(SDL_Scancode key);
