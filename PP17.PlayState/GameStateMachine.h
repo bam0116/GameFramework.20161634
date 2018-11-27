@@ -12,6 +12,6 @@ public:
 
 	std::vector<GameState*> m_gameStates;
 private:
-	GameState* m_currentState;
+	GameState * m_currentState;
 	GameState* m_prevState;
 };

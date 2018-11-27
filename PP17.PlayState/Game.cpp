@@ -31,7 +31,7 @@ bool Game::init(const char* title, int xpos, int ypos,
 		SDL_SetRenderDrawColor(m_pRenderer, 255, 255, 255, 255);
 
 		m_pGameStateMachine = new GameStateMachine();
-		m_pGameStateMachine->changeState(MenuState::Instance());
+		m_pGameStateMachine->changeState(PlayState::Instance());
 
 		m_gameObject.push_back(new Player(new LoaderParams(100, 100, 128, 82, "animate")));
 		m_gameObject.push_back(new Enemy(new LoaderParams(300, 300, 128, 82, "animate")));
@@ -57,6 +57,7 @@ void Game::update()
 
 void Game::clean()
 {
+
 	std::cout << "cleaning game\n";
 	TheInputHandler::Instance()->clean();
 	SDL_DestroyWindow(m_pWindow);
@@ -71,9 +72,5 @@ void Game::quit()
 
 void Game::handleEvents()
 {
-	TheInputHandler::Instance()->update();
-	if (TheInputHandler::Instance()->isKeyDown(SDL_SCANCODE_RETURN))
-	{
-		m_pGameStateMachine->changeState(PlayState::Instance());
-	}
+
 }

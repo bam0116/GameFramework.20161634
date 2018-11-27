@@ -19,8 +19,7 @@ public:
 	void clean();
 	void quit();
 	bool running() { return m_bRunning; }
-
-
+	GameStateMachine* getStateMachine() { return m_pGameStateMachine; }
 	SDL_Renderer* getRenderer() const { return m_pRenderer; }
 	static Game* Instance()
 	{
