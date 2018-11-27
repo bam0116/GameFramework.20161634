@@ -1,27 +1,27 @@
-#include "Bullet.h"
+#include "Player.h"
 
-Bullet::Bullet(const LoaderParams* pParams) : SDLGameObject(pParams)
-{
-}
+
+Bullet::Bullet(const LoaderParams* pParams) :SDLGameObject(pParams) {}
+
+
 void Bullet::draw()
 {
-	SDLGameObject::draw(); // we now use SDLGameObject
-}
-void Bullet::update()
-{
-	m_velocity.setX(0);
-	m_velocity.setY(0);
-	handleInput();
-	//m_currentFrame = int(((SDL_GetTicks() / 100) % 6));
-	SDLGameObject::update();
-
-}
-void Bullet::clean()
-{
+	SDLGameObject::draw();
 }
 void Bullet::handleInput()
 {
-	m_velocity.setX(3);
-	//Vector2D* vec = TheInputHandler::Instance()->getMousePosition();
-	//m_velocity = (*vec - m_position) / 100;
+
+}
+
+void Bullet::update()
+{
+	m_velocity.setX(2);
+	m_velocity.setY(0);
+	handleInput();
+	m_currentFrame = 0;
+	SDLGameObject::update();
+}
+
+void Bullet::clean()
+{
 }

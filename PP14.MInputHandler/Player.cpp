@@ -1,5 +1,6 @@
 #include "Player.h"
 
+
 Player::Player(const LoaderParams* pParams) :SDLGameObject(pParams) {}
 
 
@@ -25,7 +26,7 @@ void Player::handleInput()
 	{
 		m_velocity.setY(2);
 	}
-
+	
 }
 
 void Player::update()

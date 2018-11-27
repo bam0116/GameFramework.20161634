@@ -4,7 +4,6 @@
 
 
 Game::Game() {}
-
 Game* Game::s_pInstance = 0;
 
 bool Game::init(const char* title, int xpos, int ypos,
@@ -26,9 +25,22 @@ bool Game::init(const char* title, int xpos, int ypos,
 		{
 			return false;
 		}
+		if (!TheTextureManager::Instance()->load("Assets/Box.png", "box", m_pRenderer))
+		{
+			return false;
+		}
+		if (!TheTextureManager::Instance()->load("Assets/BoxCheck.png", "boxCheck", m_pRenderer))
+		{
+			return false;
+		}
+		if (!TheTextureManager::Instance()->load("Assets/bullet.png", "bullet", m_pRenderer))
+		{
+			return false;
+		}
 		SDL_SetRenderDrawColor(m_pRenderer, 255, 255, 255, 255);
-
-		m_gameObject.push_back(new Player(new LoaderParams(100, 100, 128, 82, "animate")));
+		BulletLife = false;
+		m_gameObject.push_back(new Player(new LoaderParams(0, 0, 128, 82, "animate")));
+		m_gameObject.push_back(new Enemy(new LoaderParams(500, 0, 100, 100, "boxCheck")));
 	}
 	else
 	{
@@ -47,15 +59,30 @@ void Game::render()
 	SDL_RenderPresent(m_pRenderer);
 }
 
+void Game::frameMove()
+{
+	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_Z) && BulletLife == false)
+	{
+		m_gameObject.push_back(new Bullet(new LoaderParams(100, 0, 100, 100, "bullet")));
+		BulletLife = true;
+	}
+	//if (BulletLife == true)
+	//{
+	//	if (m_gameObject.)
+	//	{
+	//
+	//		m_gameObject.pop_back();
+	//	}
+	//}
+		
+}
+
+
 void Game::update()
 {
 	for (std::vector<GameObject*>::size_type i = 0; i != m_gameObject.size(); i++)
 	{
 		m_gameObject[i]->update();
-	}
-	if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_SPACE))
-	{
-		m_gameObject.push_back(new Bullet(new LoaderParams(100, 100, 128, 82, "animate")));
 	}
 }
 

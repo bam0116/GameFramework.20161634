@@ -15,11 +15,11 @@ public:
 		int width, int height, bool fullscreen);
 	void render();
 	void update();
+	void frameMove();
 	void handleEvents();
 	void clean();
 	void quit();
 	bool running() { return m_bRunning; }
-
 
 	SDL_Renderer* getRenderer() const { return m_pRenderer; }
 	static Game* Instance()
@@ -38,6 +38,7 @@ private:
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 	bool m_bRunning;
+	bool BulletLife;
 	int m_currentFrame;
 	std::vector<GameObject*> m_gameObject;
 };
