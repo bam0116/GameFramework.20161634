@@ -13,36 +13,22 @@ void GameOverState::s_restartPlay()
 {
 	Game::Instance()->getStateMachine()->changeState(PlayState::Instance());
 }
-void GameOverState::render()
-{
-	for (int i = 0; i < m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->update();
-	}
-}
-void GameOverState::update()
-{
-	for (int i = 0; i < m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->update();
-	}
-}
 
 
 
 bool GameOverState::onEnter()
 {
-	if (!TheTextureManager::Instance()->load("assets/gameover.png",
+	if (!TheTextureManager::Instance()->load("Assets/gameover.png",
 		"gameovertext", Game::Instance()->getRenderer()))
 	{
 		return false;
 	}
-	if (!TheTextureManager::Instance()->load("assets/main.png",
+	if (!TheTextureManager::Instance()->load("Assets/main.png",
 		"mainbutton", Game::Instance()->getRenderer()))
 	{
 		return false;
 	}
-	if (!TheTextureManager::Instance()->load("assets/restart.png",
+	if (!TheTextureManager::Instance()->load("Assets/restart.png",
 		"restartbutton", Game::Instance()->getRenderer()))
 	{
 		return false;
@@ -65,6 +51,22 @@ bool GameOverState::onEnter()
 	std::cout << "entering PauseState\n";
 	return true;
 }
+
+void GameOverState::render()
+{
+	for (int i = 0; i < m_gameObjects.size(); i++)
+	{
+		m_gameObjects[i]->draw();
+	}
+}
+void GameOverState::update()
+{
+	for (int i = 0; i < m_gameObjects.size(); i++)
+	{
+		m_gameObjects[i]->update();
+	}
+}
+
 
 bool GameOverState::onExit()
 {

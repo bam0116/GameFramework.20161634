@@ -18,8 +18,7 @@ void PlayState::update()
 		dynamic_cast<SDLGameObject*>(m_gameObjects[0]),
 		dynamic_cast<SDLGameObject*>(m_gameObjects[1])))
 	{
-		Game::Instance()->getStateMachine()->pushState(
-			new GameOverState());
+		Game::Instance()->getStateMachine()->changeState(GameOverState::Instance());
 	}
 
 }
