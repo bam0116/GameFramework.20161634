@@ -5,7 +5,7 @@ int main(int argc, char* argv[])
 	const int FPS = 60;
 	const int DELAY_TIME = 1000.0f / FPS;
 	std::cout << "game init attempt...\n";
-	if (Game::Instance()->init("Chapter1", 100, 100, 640, 480, false))
+	if (Game::Instance()->init("MiniGame", 100, 100, 640, 480, false))
 	{
 		std::cout << "game init success!\n";
 		Uint32 frameStart, frameTime;
