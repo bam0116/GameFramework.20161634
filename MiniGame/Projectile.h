@@ -2,12 +2,12 @@
 #include "SDLGameObject.h"
 #include "InputHandler.h"
 
-class Enemy : public SDLGameObject
+class Projectile : public SDLGameObject
 {
 public:
-	Enemy(const LoaderParams* pParams);
+	Projectile(const LoaderParams* pParams);
 	virtual void draw();
 	virtual void update();
 	virtual void clean();
-	void ShotBullet();
+	void handleInput();
 };
